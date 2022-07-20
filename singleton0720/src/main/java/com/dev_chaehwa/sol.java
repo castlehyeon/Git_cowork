@@ -8,7 +8,7 @@ public class sol {
         public static void main(String[] args) {
             사람 a사람;
 
-            a사람 = 사람.callName();
+            a사람 = 사람.사람생성();
             a사람.set나이(22);
 
             System.out.println("사람의 나이는 " + a사람.get나이() + "살 입니다.");
@@ -16,25 +16,20 @@ public class sol {
         }
     }
 
-    class 사람 {
-        private int 나이;
+class 사람 {
+    private int 나이;
 
-        public int get나이() {
-            return 나이;
-        }
-
-        private 사람() {
-        }
-
-        public void set나이(int i) {
-            this.나이 = i;
-        }
-
-        public static 사람 callName(){
-            사람 사람 = new 사람();
-            return 사람;
-        }
-
-        // 힌트 : 여기에 메서드 3개 추가해야 합니다.
+    private 사람() {
     }
+    void set나이(int age){
+        this.나이 = age;
+    }
+    public int get나이(){
+        return 나이;
+    }
+     static 사람 사람생성(){ //static은 생성할 때만
+        return new 사람();
+    }
+    // 힌트 : 여기에 메서드 3개 추가해야 합니다.
+}
 
