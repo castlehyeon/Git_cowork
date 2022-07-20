@@ -13,12 +13,26 @@ public class sol {
             사람들[3] = 사람.get사람();
             사람들[4] = 사람.get사람();
 
-            System.out.println("실행완료");
+            for ( int i = 0; i < 사람들.length; i++ ) {
+                사람들[i].자기소개();
+            }
         }
     }
 
     class 사람{
+
+        private int 번호;
+        static int 사람수;
+
+        사람(int 번호){
+            this.번호 = 번호;
+        }
         static 사람 get사람(){
-           return new 사람();
+            사람 a사람 = new 사람(사람수 +1);
+            사람수++;
+            return a사람;
+        }
+        void 자기소개(){
+            System.out.printf("저는 %d번째 사람입니다.\n", 번호);
         }
     }
