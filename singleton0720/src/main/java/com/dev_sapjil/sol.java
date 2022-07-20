@@ -1,39 +1,29 @@
 package com.dev_sapjil;
 
 public class sol {
-    //code.oa.gg/java8/1073
-// 문제 : 사람객체를 생성한 후 나이를 22살로 만들어주세요.
-// 조건 : 사람 생성자는 수정/추가할 수 없습니다.
-// 조건 : 아래와 같이 출력 되어야 합니다.
+    //code.oa.gg/java8/1077
+// 문제 : 아래코드가 실행되도록 해주세요.
         public static void main(String[] args) {
-            사람 a사람;
+            사람[] 사람들 = new 사람[5];
+            //사람 객체 다섯개를 넣을 수 있는 배열
+            사람들[0] = 사람.get사람();
+            //사람 객체를 메서드호출하면서 동시에 이뤄지도록 함.
+            사람들[1] = 사람.get사람();
+            사람들[2] = 사람.get사람();
+            사람들[3] = 사람.get사람();
+            사람들[4] = 사람.get사람();
 
-            a사람 = 사람.callName();
-            a사람.set나이(22);
+            for ( int i = 0; i < 사람들.length; i++ ) {
+                사람들[i].자기소개();
+            }
 
-            System.out.println("사람의 나이는 " + a사람.get나이() + "살 입니다.");
-            // 출력 : 사람의 나이는 22살 입니다.
+		/*
+		// 출력
+		저는 1번째 사람입니다.
+		저는 2번째 사람입니다.
+		저는 3번째 사람입니다.
+		저는 4번째 사람입니다.
+		저는 5번째 사람입니다.
+		*/
         }
-    }
-
-    class 사람 {
-        private int 나이;
-
-        public int get나이() {
-            return 나이;
-        }
-
-        private 사람() {
-        }
-
-        public void set나이(int i) {
-            this.나이 = i;
-        }
-
-        public static 사람 callName(){
-            사람 사람 = new 사람();
-            return 사람;
-        }
-
-        // 힌트 : 여기에 메서드 3개 추가해야 합니다.
     }
