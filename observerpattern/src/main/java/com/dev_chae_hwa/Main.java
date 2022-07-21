@@ -1,32 +1,53 @@
 package com.dev_chae_hwa;
-/*
-main 클래스 내에 있는 안녕 메서드를 실행하고 싶으면 aMain.안녕();하면 되지만
-Main 클래스가 아닌 다른 클래스 객체에 의해 실행되로혹 해보자.
- */
+
 class Main {
     public static void main(String[] args) {
-        Main aMain = new Main(); // main 클래스로 호출을 못하니 새로은 클래스로
+        Button aButton = new Button();
+        aButton.setClickEventListener(new 고양이());
+        aButton.fireClick();
+        // 나(고양이)는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.
 
-        실행자 a실행자 = new 실행자(); //생성된 실행자 클래스에 안녕 메서드 호출이 목표
-        a실행자.set리모콘(aMain); // aMain 리모컨을 실행자에게 쥐어주고
-        a실행자.리모콘_작동();    //쥐어줘야 작동 버튼을 누를 수 있다.
-    }
+        aButton.setClickEventListener(new 개());
+        aButton.fireClick();
+        // 나(개)는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.
 
-    public void 안녕() {
-        System.out.println("Main::안녕!");
+        aButton.setClickEventListener(new 부엉이());
+        // 나(부엉이)는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.
+
+        aButton.fireClick();
     }
 }
+class Button{
+    private Object animals;
 
-class 실행자 {
-    private Object a리모콘;   //호환 가능한 Object
-
-    public void set리모콘(Object a리모콘) { // aMain리모컨을 범용적인 Object로 변경
-        this.a리모콘 = a리모콘;   // 변경하게 되면 버튼 수가 1 -> 0로 제거
+    public void setClickEventListener(Object animals) {
+        this.animals = animals;
     }
 
-    public void 리모콘_작동() {
-        if(a리모콘 instanceof Main){ // 너가 갖고 있는 a리모콘이 main 객체야?
-            ((Main)a리모콘).안녕(); // 버튼이 0개인 a리모컨에 다시 안녕 버튼을 주가하려
-        }                         // 다시 main으로 형변환 해줘야 안녕 버튼이 작동 가능
+    public void fireClick() { //object로 받아온 건 리모컨 버튼을 제거하는 것.
+        if(animals instanceof 고양이){ //animals은 고양이, 개, 부엉이 중 무엇이냐 물은 후,
+            ((고양이)animals).고양이응답(); //그에 맞는 동물로 형변환 및 메서드 호출
+        }
+        if(animals instanceof 개){
+            ((개)animals).개응답();
+        }
+        if(animals instanceof 부엉이){
+            ((부엉이)animals).부엉이응답();
+        }
+    }
+}
+class 고양이{
+    void 고양이응답(){
+        System.out.println("나(고양이)는 방금 버튼이 클릭되었다는 사실을 전달받았습니다.");
+    }
+}
+class 개{
+    void 개응답(){
+        System.out.println("나(개)는 방금 버튼이 클릭되었다는 사실을 전달받았습니다.");
+    }
+}
+class 부엉이{
+    void 부엉이응답(){
+        System.out.println("나(부엉이)는 방금 버튼이 클릭되었다는 사실을 전달받았습니다.");
     }
 }
