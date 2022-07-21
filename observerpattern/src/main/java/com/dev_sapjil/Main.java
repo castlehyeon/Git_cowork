@@ -1,46 +1,79 @@
 package com.dev_sapjil;
 
 /*
-문제 : Main 객체의 안녕이 Main클래스가 아닌 다른 클래스 객체에 의해 실행되도록 해주세요.
+문제 : 사람 객체의 `안녕`이 `button.click();`에 의해 실행되도록 해주세요.
+조건 : Button에는 `사람` 이라는 언급이 없어야 합니다.
 */
 class Main {
     public static void main(String[] args) {
-        Main aMain = new Main();
-        //Main안에 메서드가 있다.
-        실행자 a실행자 = new 실행자();
-        //실행자 클래스 안에는 Main 클래스에 접근할 수 있는 리모콘이 필요하다.
-        a실행자.set리모콘(aMain);
-        //set리모콘의 매개변수에 Main의 객체(리모콘)가 들어간다.
-        a실행자.리모콘_작동();
-    }
+        Button aButton = new Button();
+        aButton.setClickEventListener(new 고양이());
+        //객체 생성
+        aButton.fireClick();
+        // 나(고양이)는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.
 
-    public void 안녕() {
-        System.out.println("Main::안녕!");
+        aButton.setClickEventListener(new 개());
+        aButton.fireClick();
+        // 나(개)는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.
+
+        aButton.setClickEventListener(new 부엉이());
+        // 나(부엉이)는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.
+
+        aButton.fireClick();
     }
 }
+class Button{
+    Object info;
+    Animal animal;
 
-class 실행자 {
-    private Object a리모콘;
 
-    public void set리모콘(Object a리모콘) {
-        this.a리모콘 = a리모콘;
+    public Button(){
+        info = null;
+        animal = null;
+        //주소값이 들어가는 animal
+    }
+    public void setClickEventListener(Object info) {
+        this.info = info;
+        //해당 동물객체로 다운캐스팅
     }
 
-    public void 리모콘_작동() {
-        // 수정가능지역 시작
+    public void fireClick() {
+        //animal = (Animal) info;
+        //System.out.println("나("+animal.name+")는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.");
+        //캐스팅이 안된다. 고양이, 개, 부엉이 타입 -> Object -> Animal로 다운캐스팅이 불가능.
+        System.out.println("나("+info+")는 방금 버튼이 클릭되었다는 사실을 전달 받았습니다.");
+        //단순히 주소값은 받아오는 것 가능.
+        //animal.name을 어떻게든 긁어오고 싶었는데...
+        //현재는 name을 선언한 의미가 없다.
 
-        //(Main)a리모콘.안녕();
-        //안녕()이 먼저 실행된다.
-
-        if( a리모콘 instanceof Main)
-        ((Main)a리모콘).안녕();
-        //추가적으로 범용성을 위해 instanceof를 사용해 main객체를 포함하는지 여부를 묻는다.
-
-
-
-
-
-        // 수정가능지역 끝
-        //리모콘을 작동할 수 있게 메서드를 끌어와야함?
+    }
+}
+class Animal{
+    public String name;
+    public Animal(){
+        name = "";
+    }
+}
+class 고양이{
+    //String name;
+    Animal animal;
+    public 고양이(){
+        //name = String.valueOf(new Animal());
+        animal = new Animal();
+        animal.name = "고양이";
+    }
+}
+class 개{
+    Animal animal;
+    public 개(){
+        animal = new Animal();
+        animal.name = "개";
+    }
+}
+class 부엉이{
+    Animal animal;
+    public 부엉이(){
+        animal = new Animal();
+        animal.name = "부엉이";
     }
 }
