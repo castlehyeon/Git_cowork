@@ -1,50 +1,32 @@
 package com.dev_chaehwa;
 
-public class sol {
-    //code.oa.gg/java8/1073
-// 문제 : 사람객체를 생성한 후 나이를 22살로 만들어주세요.
-// 조건 : 사람 생성자는 수정/추가할 수 없습니다.
-// 조건 : 아래와 같이 출력 되어야 합니다.
-        public static void main(String[] args) {
-            사람[] 사람들 = new 사람[7];
-            사람들[0] = 사람.get사람();
-            사람들[1] = 사람.get사람();
-            사람들[2] = 사람.get사람();
-            사람들[3] = 사람.get사람();
-            사람들[4] = 사람.get사람();
-            사람들[5] = 사람.get사람();
-            사람들[6] = 사람.get사람();
+/*
+문제 : 사람 객체의 `안녕`이 `button.click();`에 의해 실행되도록 해주세요.
+조건 : Button에는 `사람` 이라는 언급이 없어야 합니다.
+*/
+class Main {
+    public static void main(String[] args) {
+        Button button = new Button();
+        button.setListener(new 사람()); // 사람 리모컨을 setListener에 담기
+        button.click();
+    }
+}
 
-            for ( int i = 0; i < 사람들.length; i++ ) {
-                사람들[i].자기소개();
-            }
-        }
+class 사람 {
+    public void 안녕() {
+        System.out.println("Main::안녕!");
+    }
+}
+class Button{
+    Object person;
+    public void setListener(Object person) { // person == new 사람()
+        this.person = person;
     }
 
-    class 사람{
-        private int 번호;
-        static int 최대사람수;
-        static int 사람수;
-        static 사람 a사람;
-
-        static {
-            사람수 = 0;
-            최대사람수 = 3;
-            a사람 = null;
-        }
-        사람(int 번호){
-            this.번호 = 번호;
-
-        }
-        static 사람 get사람(){
-            if(사람수 < 최대사람수){
-                a사람 = new 사람(사람수 + 1);
-                사람수++;
-            }
-
-            return a사람;
-        }
-        void 자기소개(){
-            System.out.printf("저는 %d번째 사람입니다.\n",번호);
-        }
+    void click(){ //person은 사람이므로 person으로 안녕을 조작한다.
+        ((사람)person).안녕();  // 사람이 object로 변환되면서 버튼이 제거되었으니,
+                              // 다시 안녕 버튼을 추가해주려면 사람으로 변환해주어야 된다.
     }
+
+
+}
