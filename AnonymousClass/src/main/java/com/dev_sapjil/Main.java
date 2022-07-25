@@ -15,8 +15,9 @@ class Main {
             return num1-num2;});
         System.out.println(결과2); // -10
 
-        int 결과3 = a계산기.수행((num1, num2) -> {
-            return num1*num2;});
+        int 결과3 = a계산기.수행(
+                (num1, num2) -> num1*num2);
+        //{}과 return을 줄일 수 있다.
         System.out.println(결과3); // 300
     }
 }
